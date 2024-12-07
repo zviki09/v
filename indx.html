@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>אינסטה-Clone</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fafafa;
+      direction: rtl;
+    }
+
+    header {
+      background-color: #fff;
+      padding: 10px 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 24px;
+      color: #333;
+    }
+
+    #posts {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .post {
+      width: 300px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .post p {
+      padding: 10px;
+      font-size: 16px;
+      color: #333;
+    }
+
+    #new-post-form {
+      margin: 20px;
+      text-align: center;
+    }
+
+    #new-post-form input[type="text"] {
+      width: 250px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    #new-post-form button {
+      padding: 10px 20px;
+      background-color: #0095f6;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #new-post-form button:hover {
+      background-color: #007acc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>אינסטה-Clone</h1>
+  </header>
+
+  <main>
+    <section id="new-post-form">
+      <h2>הוסף פוסט חדש</h2>
+      <input type="text" id="postText" placeholder="מה תרצה לשתף?">
+      <button onclick="addPost()">פרסם</button>
+    </section>
+
+    <section id="posts">
+      <h2>הפוסטים שלך</h2>
+      <!-- פוסטים יתווספו כאן -->
+    </section>
+  </main>
+
+  <script>
+    function addPost() {
+      // קבלת הטקסט מהשדה
+      const postText = document.getElementById('postText').value;
+
+      // בדיקה אם השדה לא ריק
+      if (postText.trim() === "") {
+        alert("אנא כתוב משהו לפני הפרסום!");
+        return;
+      }
+
+      // יצירת אלמנט פוסט חדש
+      const postElement = document.createElement('div');
+      postElement.className = 'post';
+      postElement.innerHTML = `<p>${postText}</p>`;
+
+      // הוספת הפוסט לקטע הפוסטים
+      const postsSection = document.getElementById('posts');
+      postsSection.appendChild(postElement);
+
+      // ניקוי שדה הטקסט
+      document.getElementById('postText').value = "";
+    }
+  </script>
+</body>
+</html>
